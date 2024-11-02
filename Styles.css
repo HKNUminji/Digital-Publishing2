@@ -1,0 +1,708 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* 모든 요소에 적용되는 기본 스타일 */
+* {
+	font-family: "noto Sans"; /* 기본 폰트 설정 */
+	color: #ffffff; /* 텍스트 색상 설정 */
+	margin: 0px;
+    padding: 0px;
+	box-sizing: border-box;
+}
+
+/* 포커스 또는 활성화된 요소에 아웃라인 제거 */
+*:active, *:focus {
+	outline: none; /* 테두리 강조(아웃라인)를 제거 */
+}
+
+/* HTML 및 body 요소의 높이를 화면 전체로 설정 */
+html, body {
+	height: 100%;
+	font-size: 16px; /* 전체 폰트 크기 설정 */
+}
+
+/* body의 기본 스타일 설정 */
+body {
+	margin: 30px auto; /* 가운데 정렬 (수평) */
+	background: #000000; /* 배경색 설정 (어두운 회색) */
+	overflow-x: hidden;
+	scroll-snap-type: y mandatory;
+	overflow: hidden;
+	font-family: Arial, sans-serif; /* 전체 폰트 적용 */
+	line-height: 1.6;
+}
+
+/* 레이아웃 관련 요소 */
+#container{
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+}
+
+/* .scrollAnim 클래스에 대한 스타일 (스크롤 애니메이션 영역) */
+.scrollAnim {
+	min-height: 100%; /* 최소높이를 화면 전체로 설정 */
+	opacity: 0; /* 초기 투명도 설정 (애니메이션 전에는 보이지 않음) */
+	transition: 0.8s; /* 애니메이션 시간 0.8초 */
+	display: flex; /* flexbox 사용 */
+	padding: 0 120px; /* 좌우 여백 120px */
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* .scrollAnim 안에 있는 .content에 대한 스타일 */
+.scrollAnim .content {
+	margin: auto; /* 중앙에 위치 (가로/세로) */
+}
+
+.scrollAnim.anim {
+	opacity: 1; /* 애니메이션 후 완전히 보이도록 설정 */
+}
+
+/* 타이포그래피 요소 */
+h1, h2, h3, h6, p, u .mouseLayout {
+	display: block; /* 블록 요소로 설정 */
+	color: #ffffff; /* 밝은 회색 텍스트 */
+	font-weight: bold; /* 굵은 폰트 */
+	margin: 0; /* 여백 제거 */
+	line-height: 2em; /* 줄 간격 설정 */
+	transition: all 0.8s; /* 모든 스타일 변화에 대한 0.8초 전환 */
+	padding-left: 0; /* 왼쪽 여백 0 */
+	position: relative;
+	z-index: 10;
+	text-align: center;
+}
+
+u {
+	text-decoration: none;
+	display: inline;
+	box-shadow: inset 0-25px rgb(113, 55, 74);
+	color: #c9c9c9;
+
+}
+
+h1 {
+	font-size: 5vw; /* 폰트 크기 설정 */
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+	font-size: 2vw; /* 폰트 크기 설정 */
+	color: rgb(216, 216, 216);
+}
+
+h3 {
+	font-size: 3vw; /* 폰트 크기 설정 */
+	font-weight: 700; /* 굵은 폰트 */
+	font-family: "Anton", sans-serif; /* 제목 폰트 설정 */
+}
+
+h4 {
+	font-size: 1.2vw;
+	transition: all 1.2s; /* 1.2초 동안 모든 스타일 변화 전환 */
+	color: rgb(216, 216, 216);
+	font-weight: 400;
+	text-align: justify;
+}
+
+/* p 태그에 대한 스타일 (단락 텍스트) */
+p {
+	font-size: 1.2vw; /* 폰트 크기 설정 */
+	transition: all 1.2s; /* 1.2초 동안 모든 스타일 변화 전환 */
+	color: rgb(216, 216, 216);
+	font-weight: 400;
+	text-align: justify;
+}
+
+footer p {
+	font-size: 0.6vw;
+	color: rgb(9, 9, 9);
+	font-weight: 300;
+	text-align: center;
+}
+
+.h100 {
+	height: 70px;
+}
+
+.h30 {
+	height: 20px;
+}
+
+
+.anim h1, .anim h2 {
+	transition-delay: 0.1s; /* 0.1초의 지연 후 애니메이션 실행 */
+}
+
+
+
+/* 애니메이션 효과 */
+.anim-top {
+	transform: translate(0, 150px); /* Y축으로 150px 이동 */
+}
+
+.anim-left {
+	transform: translate(-150px, 0); /* X축으로 150px 이동 */
+}
+
+.anim .anim-top, .anim .anim-left {
+	transform: translate(0, 0); /* 제자리로 복귀 */
+}
+
+/* 눈알 스타일 */
+.eyes {
+	z-index: 10; /* 눈알은 더 높은 z-index 값을 설정 */
+	position: relative;
+	top: 20%;
+	transform: translateY(-20%);
+	width: 100%;
+	text-align: center;
+}
+
+.eye {
+    width: 20vw;
+    height: 10vw;
+    background: radial-gradient(circle, #e4e4e4 40%, #ffcccc 70%, #b86161 100%); /* 흰색에서 분홍색으로 가는 그라데이션 */
+    display: inline-block;
+    margin: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: radial-gradient(circle, #e4e4e4 40%, #ffcccc 70%, #b86161 100%); 
+    
+    /* SVG 마스크 설정 */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='323' height='158' viewBox='0 0 323 158' fill='none'%3E%3Cpath d='M321.615 82.059C220.763 -30.3137 94.5455 -24.1872 1.42473 81.87C0.754706 82.6331 0.766073 83.8021 1.45641 84.5469C93.2324 183.562 238.894 180.841 321.652 84.6982C322.301 83.9437 322.28 82.8 321.615 82.059Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center center;
+    -webkit-mask-size: 90% auto; /* 마스크 크기 조정 */
+    
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='323' height='158' viewBox='0 0 323 158' fill='none'%3E%3Cpath d='M321.615 82.059C220.763 -30.3137 94.5455 -24.1872 1.42473 81.87C0.754706 82.6331 0.766073 83.8021 1.45641 84.5469C93.2324 183.562 238.894 180.841 321.652 84.6982C322.301 83.9437 322.28 82.8 321.615 82.059Z' fill='black'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: 90% auto; /* 마스크 크기 조정 */
+}
+
+.ball {
+	width: 5vw;
+	height: 5vw;
+	background: #2e0000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	border: 15px solid #641919;
+}
+
+/* 예능 연대기 이미지 박스 */
+.subcontainer {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	z-index: 1;
+}
+
+.subcontainer .box {
+	position: relative;
+	width: 20%;
+	height: 400px;
+	margin: 50px 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.subcontainer .box .image-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	clip-path: inset(0); /* 초기 사각형 (전체 영역) */
+	transition: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.subcontainer .box:hover .image-box {
+	clip-path: inset(20px); /* 호버 시 사각형 (안쪽으로 20px) */
+	transition-delay: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.subcontainer .box .image-box img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* 이미지 박스에 검정색 불투명 오버레이 추가 */
+.subcontainer .box .image-box::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* 검정색 불투명도 50% */
+	opacity: 0; /* 초기 투명도 0 */
+	transition: opacity 0.5s ease; /* 부드러운 전환 효과 */
+}
+
+/* 호버 시 검정색 불투명 오버레이 표시 */
+.subcontainer .box:hover .image-box::after {
+	opacity: 1; /* 호버 시 오버레이 불투명도 100% */
+}
+
+.subcontainer .box .content-box {
+	position: relative;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 55%;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.subcontainer .box .content-box h3 {
+	margin: 0;
+	padding: 0;
+	top: 30%;
+	font-size: 3vw;
+}
+
+.subcontainer .box .content-box p {
+	margin: 0;
+	padding: 0 10px;
+	top: 70%;
+	font-size: 1vw;
+	text-align: center;
+}
+
+
+.subcontainer .box .content-box h3,
+.subcontainer .box .content-box p {
+	opacity: 0;
+	transition: 0.5s;
+	transform: translateY(20px);
+}
+
+.subcontainer .box:hover .content-box h3 {
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: 0.2s;
+}
+
+.subcontainer .box:hover .content-box p {
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: 0.4s;
+}
+
+
+/* 스크롤다운 스타일 */
+.center {
+    margin: auto;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 추가 */
+    top: -7vh; /* 원하는 만큼 위로 이동 */
+}
+
+
+.mouseLayout {
+	width: 20px;
+	height: 30px;
+	background: transparent;
+	border: 3px solid rgb(216,216,216);
+	border-radius: 50px;
+	position: relative;
+}
+
+.mouseLayout::before {
+	content: '';
+	border: 2px solid rgb(216,216,216);
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	animation: drop 1s linear infinite;
+}
+
+.mouseLayout::after {
+	content: '';
+	border: 2px solid rgb(216,216,216);
+	height: 10px;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50px;
+	transition: all 2s ease;
+}
+
+@keyframes drop {
+	0% {
+		transform: translate(-50%, 80px);
+		opacity: 0;
+	}
+	60% {
+		transform: translate(-50%, 100px);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translate(-50%, 110px);
+		opacity: 1;
+	}
+}
+
+/* 클릭시 나타나는 사각형 */
+.rectangle {
+	position: absolute;
+	width: 150px; /* 최종 너비는 150px */
+	height: 100px;
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: scale(0); /* 중앙에서 점점 커지는 애니메이션을 위해 기본 크기를 0으로 설정 */
+	transition: transform 0.5s ease; /* scale 변화를 0.5초에 걸쳐 전환 */
+	z-index: 1;
+}
+
+.rectangle img {
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+.rectangle.active {
+	transform: scale(1); /* 애니메이션으로 최종 크기 */
+}
+
+/* 이미지 위에 글자 표시 */
+.background-image {
+	max-width: 100%; /* 이미지가 컨테이너 너비에 맞도록 조정 */
+	height: auto; /* 비율 유지 */
+	position: relative; /* 절대 위치가 아니라면 상대 위치 설정 */
+}
+
+.scrollAnim {
+	position: relative; /* 부모 요소에 상대 위치 설정 */
+	overflow: hidden; /* 내용이 부모 요소를 벗어나지 않도록 설정 */
+}
+
+.content {
+	position: relative; /* 내용에 상대 위치 설정 */
+}
+
+/* 깨진 유리창 이미지 스타일 */
+.background-image-window {
+	width: 100vw; /* 뷰포트 너비 100% */
+	height: 100vh; /* 뷰포트 높이 100% */
+	object-fit: cover; /* 이미지 비율 유지하며 화면에 꽉 차도록 조정 */
+	display: block; /* 이미지의 아래 여백 제거 */
+	overflow: hidden;
+	position: relative;
+}
+
+.text-overlay {
+	position: absolute; /* 텍스트 오버레이에 절대 위치 설정 */
+	top: 0; /* 상단에 위치 */
+	left: 0; /* 좌측에 위치 */
+	right: 0; /* 우측에 위치 */
+	bottom: 0; /* 하단에 위치 */
+	background-color: rgba(0, 0, 0, 0.7); /* 검정색 배경과 불투명도 설정 */
+	display: flex; /* 플렉스 박스 사용하여 중앙 정렬 */
+	flex-direction: column; /* 세로 방향으로 배치 */
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+	padding: 20px; /* 패딩 추가 */
+}
+
+.anim-left-window {
+	position: absolute; /* 텍스트를 절대 위치로 설정 */
+	color: rgb(255, 255, 255);
+	margin-top: -80px;
+}
+
+.anim-top-window {
+	position: absolute; /* 텍스트를 절대 위치로 설정 */
+	color: rgb(206, 206, 206); /* 텍스트 색상 설정 (이미지와 대비되는 색상) */
+}
+
+.anim-left-window {
+	top: 30%; /* 원하는 위치로 조정 */
+	font-size: 3vw; /* 폰트 크기 조정 */
+	max-width: 80%;
+	font-weight: 700;
+	transform: translate(-150px,0);
+	
+}
+
+.anim-top-window {
+	top: 50%;
+	left: 10%; /* 원하는 위치로 조정 */
+	font-size: 1.2vw; /* 폰트 크기 조정 */
+	max-width: 80%; /* 텍스트가 화면에 적당하게 보이도록 최대 너비 설정 */
+	font-weight: 400;
+	transform: translate(0,150px);
+	text-align: justify;
+	line-height: 2em;
+}
+
+.anim .anim-left-window{
+	transform: translate(0,0);
+}
+
+.anim .anim-top-window{
+	transform: translate(0,0);
+}
+
+.pannel.fourth .scrollAnim::after {
+	content: "";
+	display: block;
+	clear: both;
+  }
+
+
+/*지적질 아이콘*/
+.icon-one {
+	width: 13%;
+	height: auto;
+	margin: 20% 0 0 92%;
+	float: left;
+	position: absolute;
+}
+
+/*저울 아이콘*/
+.icon-two {
+	width: 12%;
+	height: auto;
+	margin-right: 12%;
+	margin-top: -10%;
+	float: right;
+}
+
+/*차 아이콘*/
+.icon-three {
+	width: 12%;
+	height: auto;
+	top: 120px;
+	left: 280px;
+	position: absolute;
+	margin-left: 6%;
+	margin-top: -5%;
+}
+
+/* 눈 아이콘*/
+.icon-four {
+	width: 9%;
+	height: auto;
+	margin-right: -20%;
+	margin-top: -23%;
+	float: right;
+}
+
+
+.pannel {
+	width: 100%;
+	height: 100vh;
+	scroll-snap-align: end;
+}
+
+.first {
+	background-color: rgb(79, 79, 79, 0.3);
+	background-image: url('img/firstbackground.gif'); /* 움짤 이미지 경로 */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh; /* 전체 화면 높이 */
+}
+
+.second {
+	/*background-color: rgb(197, 112, 0);*/
+	background-image: url('img/background3.gif');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+}
+
+
+.third {
+	background-image: url('img/finalbrokenglass.gif'); /* 움짤 이미지 경로 */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+}
+
+.fourth {
+	background-image: url('img/background2.gif'); /* 움짤 이미지 경로 */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(0, 0, 0);
+}
+
+.fifth {
+	background-image: url('img/final\ background.gif');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(0, 0, 0);
+}
+
+footer {
+	background-color: #848484; /* 원하는 색상 코드로 변경 */
+	padding: 20px;
+	text-align: center;
+  }
+
+@keyframes anim-left {
+    from {
+        opacity: 0;
+        transform: translateX(-100px) rotate(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(10deg);
+    }
+}
+
+@keyframes anim-right {
+    from {
+        opacity: 0;
+        transform: translateX(100px) rotate(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(-20deg);
+    }
+
+	
+}
+@keyframes anim-left1 {
+    from {
+        opacity: 0;
+        transform: translateX(-100px) rotate(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(10deg);
+    }
+
+	
+}
+
+/*지적질 아이콘 애니메이션*/	
+.icon-one.animate {
+    animation: anim-left 1s ease-out forwards;
+}
+
+/*저울 아이콘 애니메이션*/
+.icon-two.animate {
+    animation: anim-right 1s ease-out forwards;
+}
+
+/*차 아이콘 애니메이션*/
+.icon-three.animate {
+    animation: anim-right 1s ease-out forwards;
+}
+
+/*눈 아이콘 애니메이션*/
+.icon-four.animate {
+    animation: anim-left 1s ease-out forwards;
+}
+
+
+/*포스트잇 설정*/
+.post-it-container {
+	display: flex;
+	align-items: flex-start;
+	position:absolute;
+  }
+  
+  .post-it {
+	width: 22vw;
+	height: auto;
+	transition: transform 1.5s ease; /* 애니메이션 전환 시간 설정 */
+	margin-top: 80px;
+	margin-left: 100px;
+  }
+
+  .post-it-wrapper {
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform 1s ease; /* 애니메이션 전환 시간 설정 */
+	margin-top: 90px;
+	margin-left: 80px;
+  }
+
+  .post-it-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black; /* 텍스트 색상 */
+	font-weight: 400;
+	text-align: justify;
+	pointer-events: none;
+	font-size: 1vw;
+	margin-top: 50px;
+	margin-left: 40px;
+  }
+
+  /* 애니메이션 효과 */
+  .post-it-left.anim {
+	transform: translateX(-30px) rotate(-15deg);
+  }
+  
+  
+  .post-it1.anim, .post-it1 .post-it-text.anim {
+	transform: translateX(-50px) rotate(-15deg);
+  }
+
+  .broken-window{
+	position: relative;
+	margin-top: 200px;
+	margin-right: 13%;
+	margin-left: 6%;
+	transform: translate(150px, 0);
+  }
+
+  
+  .anim .broken-window {
+	transform: translate(0, 0);
+  }
+
+/*일반인 관찰예능의 문제 부분 본문 텍스트 스타일*/  
+.left-text {
+	margin-right: 33%;
+	transform: translate(-150px,0);
+}
+
+.anim .left-text {
+	transform: translate(0,0);
+}
+/*일반인 관찰예능의 문제 부분 본문 텍스트 스타일(여기까지 끝)*/  
